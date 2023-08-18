@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="5" passed="5" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2023-08-10T23:05:12 IST" name="Default suite" finished-at="2023-08-10T23:05:20 IST" duration-ms="8656">
+    <groups>
+    </groups>
+    <test started-at="2023-08-10T23:05:12 IST" name="Default test" finished-at="2023-08-10T23:05:20 IST" duration-ms="8656">
+      <class name="api.tests.ContainerTest">
+        <test-method signature="testCreateContainer(java.lang.String,java.lang.String,java.lang.String)[pri:1, instance:api.tests.ContainerTest@223d2c72]" started-at="2023-08-10T23:05:13 IST" name="testCreateContainer" data-provider="Data" finished-at="2023-08-10T23:05:16 IST" duration-ms="3178" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[test_ak]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[test_ak]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[CONTAINER]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCreateContainer -->
+        <test-method signature="testGetContainerById()[pri:0, instance:api.tests.ContainerTest@223d2c72]" started-at="2023-08-10T23:05:16 IST" name="testGetContainerById" finished-at="2023-08-10T23:05:17 IST" depends-on-methods="api.tests.ContainerTest.testCreateContainer" duration-ms="654" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetContainerById -->
+        <test-method signature="testUpdateContainer(java.lang.String,java.lang.String,java.lang.String)[pri:3, instance:api.tests.ContainerTest@223d2c72]" started-at="2023-08-10T23:05:17 IST" name="testUpdateContainer" data-provider="Data" finished-at="2023-08-10T23:05:18 IST" duration-ms="661" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[test_ak]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[test_ak]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[CONTAINER]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testUpdateContainer -->
+        <test-method signature="testDeleteContainer()[pri:4, instance:api.tests.ContainerTest@223d2c72]" started-at="2023-08-10T23:05:18 IST" name="testDeleteContainer" finished-at="2023-08-10T23:05:19 IST" duration-ms="882" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testDeleteContainer -->
+        <test-method signature="testGetContainers()[pri:5, instance:api.tests.ContainerTest@223d2c72]" started-at="2023-08-10T23:05:19 IST" name="testGetContainers" finished-at="2023-08-10T23:05:20 IST" duration-ms="1657" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetContainers -->
+      </class> <!-- api.tests.ContainerTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
