@@ -6,7 +6,8 @@ import static io.restassured.RestAssured.given;
 
 import java.util.ResourceBundle;
 
-import api.payloads.User;
+import api.payloads.ReqUser;
+
 
 //created for CRUD operation
 
@@ -18,7 +19,7 @@ public class UserEndPoints2 {
 			return routes;	
 	}
 	
-	public static Response createUser(User payload)
+	public static Response createUser(ReqUser payload)
 	{
 		String post_url = getUrl().getString("post_url");
 		String username = getUrl().getString("username");
@@ -47,7 +48,7 @@ public class UserEndPoints2 {
 		return response;
 	}
 	
-	public static Response updateUser(String userName, User payload)
+	public static Response updateUser(String userName, ReqUser payload)
 	{
 		String update_url = getUrl().getString("update_url");
 		String username = getUrl().getString("username");

@@ -1,84 +1,54 @@
 package api.tests;
 
+import java.io.InputStream;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hamcrest.MatcherAssert;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.github.javafaker.Faker;
 
-import api.endpoints.UserEndPoints;
-import api.payloads.User;
+import api.endpoints.Req2EndPoints;
+import api.payloads.ReqUser;
+import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.Response;
+import io.restassured.response.ResponseBody;
 
 public class UserTests {
 	
 	Faker faker;
-	User userPayload;
+	ReqUser userPayload;
 	public Logger logger;
 
 	@BeforeClass
 	public void setupData()
 	{
 		faker = new Faker();
-		userPayload =  new User();
+		userPayload =  new ReqUser();
 		
 		
 		
-		userPayload.setId(faker.idNumber().hashCode());
-		userPayload.setUsername(faker.name().username());
-		userPayload.setFirstName(faker.name().firstName());
-		userPayload.setLastName(faker.name().lastName());
-		userPayload.setEmail(faker.internet().emailAddress());
-		userPayload.setPassword(faker.internet().password(5,10));
-		userPayload.setPhone(faker.phoneNumber().cellPhone());
+		userPayload.setJob(faker.job().title());
+		userPayload.setName(faker.name().name());
+		
 		
 		//logs
 		
-		logger = LogManager.getLogger(this.getClass());
 	}
 	
 	@Test(priority=1)
 	public void testPostUser()
 	{
-		logger.info("............User Created............");
-		Response response = UserEndPoints.createUser(userPayload);
+		Response response = Req2EndPoints.createUser(userPayload);
+		MatcherAssert.assertThat(
+				response.getBody().asString(),
+		JsonSchemaValidator.matchesJsonSchemaInClasspath("createUser.json")
+	);
 		response.then().log().all();
-		Assert.assertEquals(response.getStatusCode(), 200);
-		logger.info("............User Created............");
-	}
-	
-	@Test(priority=2)
-	public void testGetUserByName() 
-	{
-		Response response = UserEndPoints.readUser(this.userPayload.getUsername());
-		response.then().log().all();
-		Assert.assertEquals(response.getStatusCode(), 200);
-	}
-	@Test(priority=3)
-	public void testupdateUserByName() 
-	{
-		userPayload.setFirstName(faker.name().firstName());
-		userPayload.setLastName(faker.name().lastName());
-		userPayload.setEmail(faker.internet().emailAddress());
 		
-		Response response = UserEndPoints.updateUser(this.userPayload.getUsername(), userPayload);
-		response.then().log().all();
-		Assert.assertEquals(response.getStatusCode(), 200);
-		
-		//checking data after update
-		Response responseAfterUpdate = UserEndPoints.readUser(this.userPayload.getUsername());
-		response.then().log().all();
-		Assert.assertEquals(responseAfterUpdate.getStatusCode(), 200);
-		
+		Assert.assertEquals(response.getStatusCode(), 201);
 	}
-	@Test(priority=4)
-	public void testDeleteUserByName() 
-	{
-		Response response = UserEndPoints.deleteUser(this.userPayload.getUsername());
-		response.then().log().all();
-		Assert.assertEquals(response.getStatusCode(), 200);
-	}
-	
 }
